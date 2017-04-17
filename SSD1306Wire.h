@@ -28,6 +28,9 @@
 #ifndef SSD1306Wire_h
 #define SSD1306Wire_h
 
+#define _min(a, b) a ? a < b : b
+#define _max(a, b) a ? a > b : b
+
 #include "OLEDDisplay.h"
 #include <Wire.h>
 
@@ -45,7 +48,7 @@ class SSD1306Wire : public OLEDDisplay {
     }
 
     bool connect() {
-      Wire.begin(this->_sda, this->_scl);
+      Wire.begin();
       // Let's use ~700khz if ESP8266 is in 160Mhz mode
       // this will be limited to ~400khz if the ESP8266 in 80Mhz mode.
       Wire.setClock(700000);
