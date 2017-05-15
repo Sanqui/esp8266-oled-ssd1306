@@ -28,27 +28,28 @@
 #ifndef SSD1306Wire_h
 #define SSD1306Wire_h
 
+#define _min(a, b) a ? a < b : b
+#define _max(a, b) a ? a > b : b
+
 #include "OLEDDisplay.h"
-#include <Wire.h>
+#include <i2c_t3.h>
 
 class SSD1306Wire : public OLEDDisplay {
   private:
       uint8_t             _address;
-      uint8_t             _sda;
-      uint8_t             _scl;
+      uint8_t             _pins;
 
   public:
-    SSD1306Wire(uint8_t _address, uint8_t _sda, uint8_t _scl) {
+    SSD1306Wire(uint8_t _address, uint8_t pins) {
       this->_address = _address;
-      this->_sda = _sda;
-      this->_scl = _scl;
+      this->_pins = pins;
     }
 
     bool connect() {
-      Wire.begin(this->_sda, this->_scl);
+      Wire.begin(I2C_MASTER, 0, I2C_PINS_33_34, I2C_PULLUP_EXT, 700000);
       // Let's use ~700khz if ESP8266 is in 160Mhz mode
       // this will be limited to ~400khz if the ESP8266 in 80Mhz mode.
-      Wire.setClock(700000);
+      //Wire.setClock(700000);
       return true;
     }
 

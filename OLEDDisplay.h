@@ -38,9 +38,9 @@
 #endif
 
 // Use DOUBLE BUFFERING by default
-#ifndef OLEDDISPLAY_REDUCE_MEMORY
-#define OLEDDISPLAY_DOUBLE_BUFFER
-#endif
+//#ifndef OLEDDISPLAY_REDUCE_MEMORY
+//#define OLEDDISPLAY_DOUBLE_BUFFER
+//#endif
 
 
 // Display settings
